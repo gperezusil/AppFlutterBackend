@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tienda-flutter",
+  "private_key_id": "3543e62848752bc1d3c78c051f086360a80837f5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCxlqUiTCNZvCUa\nRPHTBjqk+fqreoSCoq/GmN30EDRTQAzrnJwwyHkU7dW7rh/h02KHKJ6nYOn6rb9X\niFv8hgAVhzpzqabEYPv/qESIoRalcDHKkm+B/SdV42zeHMXNEeeknFjj4hPxY9vx\nAoyDQ2ht+vn3ElSl4A0ezVZkww57ghUsCH46+Xd5Kv/QPuYhdq3kAh93RUPMXKs2\nRuO3DohTs8u5wYlvmgo7U0UIvf0P6ArBjpihEUDBwwRPmkgDGDRqA6Xm6gyh2vcm\ncXOffcB62cjoprx7tHjnWYzTUqWfyBos90YqboIF6ZroZTU0mZMt7/wTee+LTBoM\n/XBuBU8hAgMBAAECggEAAYiLVbnaUsmn+Nt4SpIK0taZOl6RExcwRRrYDMXQi9j5\nW5XzN80dVYfNsQSKgC7M8p2QTCHvN0PFi44Q/EPUb5smry27c8XiGyWi7NqWOVi4\nB1efGJxc2PYhICRXtWL2kPJsJpCSy0JpWWIEIFSGS+/PNXnOKw39kwLjIHTaNMkJ\nry65guCg+DJ/MTCNmF8I1fpmGpu0Xsr3vY45VFa619dHDLcZWVuCpssEYVFlkbMr\ncHSO0SXmBrbrwQc+6dMieqCtNmJ4Xq48ud4AZyPxf28rHsqoSrAk3ypfCx4wHbaR\nXcI4jqx4fo4QhFkN/0y/Doo0tcMfEV9sZoss80fPKQKBgQDo/ER19Wkay1pHhXwk\nLi6+DpZtLgFUY2D4SoPn6DBGQ1zinRWJgK6DfdjypBjfmzpBJIQ0njm3fpcge6M4\nfOhbCWqeJQBn98bWObFsbSO1GN0sFeLzb0r/YhSmYMGcanyiUhI4QPELLlM4cZlr\nYbGP8BcpNXbXP5eIOxSzE/5h2QKBgQDDIX/42BO9Sa5jRSodT+g3wlBYie5/nNsc\nfQ281wqCuXs1WBhDXC5OrOOYa2sz6zY8PU2ssoAlD9ksEJYavuJojimzMCiGOqCj\n2K9kuNb03/XqQfw9nE2gD3rBBD8ozr5lx/e+Dh8eue3HGvvP/z58PcjgdB1MNf6G\no1WZsFFCiQKBgBQfFVqKo1UpEtbydFI7mtXXNK6hNoQvQQSwisvQhbrLvo3juyRw\n9KFukPoDqhJFubY+jRxuPdXXHP41L1eFkhuqqIaX830HLSj7OpN+qYLObuuLyFn1\n1qhPtDDaUl5L5A+wvtoU4bxxd8Z8KR/ZBBjGR3nLoEPevhuJ3rPImkOhAoGAGf1n\nRyS4lFixAoXe0yKmgm6+NtzASH0C7it13fYib0D3OSavrKElhdMfSVjdYX/trF5Z\n7yujR8xxl53p8EwGafitczFx5FcAuHIPAnJgJyOBZJ8/UpF0AWKubfD73JqU34ef\n5s+Is5X+JqvgaFbN4sxz6fltQY5bhWFR8HN8j0kCgYAx3EodT2k9wLyzwVdRjUJW\nX1k/WaXWbFbH400/d9waNY4jjF1l95C1SJIWLVFpetYn0vmmqPo0tUXcvKh3IRAl\nU9hSrvcwJXuRFozqC77dci0iWUeg3qDnlWzM6PAgf2Iaeyl80Cxk9NcCyvjCDrhL\nQ1Vq8P9Mj6V3xO+WCX50+w==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-zxhe5@tienda-flutter.iam.gserviceaccount.com",
+  "client_id": "105749586010616380493",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zxhe5%40tienda-flutter.iam.gserviceaccount.com"
+}
