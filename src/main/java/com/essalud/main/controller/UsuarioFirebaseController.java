@@ -1,5 +1,8 @@
 package com.essalud.main.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +27,12 @@ public class UsuarioFirebaseController {
 	}
 	
 	@GetMapping("/obtener/{correo}")
-	public Usuario obtenerUsuario(@PathVariable String correo) {
-		Usuario  usu = firebaseService.obtenerUsuario(correo);
+	public List<Usuario> obtenerUsuario(@PathVariable String correo) {
+		List<Usuario> usu = new ArrayList<Usuario>();
+		for (Usuario u : firebaseService.obtenerUsuario(correo)) {
+			usu.add(u);
+		}
+
 		return usu;
 	}
 }
