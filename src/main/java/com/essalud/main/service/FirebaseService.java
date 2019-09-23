@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,21 +18,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.essalud.main.entity.Usuario;
+import com.essalud.main.entity.UsuarioCarga;
 import com.essalud.main.entity.Usuario_Datos;
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.cloud.FirestoreClient;
-import com.google.cloud.firestore.Query;
 
 @Service
 public class FirebaseService {
@@ -48,12 +47,18 @@ public class FirebaseService {
 	public boolean agregar() {
 
 		try {
+			
 			deleteCollection();
 			List<Usuario> usuario = leerTxt();
 			CollectionReference cities = db.collection("usuario");
 			List<ApiFuture<WriteResult>> futures = new ArrayList<>();
 			for (Usuario u : usuario) {
-				futures.add(cities.document(String.valueOf(u.getId())).set(u));
+				if(u.getUsuario_datos()!=null) {
+				String stdId=UUID.randomUUID().toString();
+				futures.add(cities.document(stdId).set(new UsuarioCarga(u.getId(),u.getUser_name(),
+						u.getA_paterno(),u.getA_materno(),u.getNombres(),u.getContrasena(),
+						u.getUsuario_datos().getCorreo())));
+				}
 			}
 			ApiFutures.allAsList(futures).get();
 		} catch (InterruptedException e) {
@@ -66,15 +71,16 @@ public class FirebaseService {
 		return true;
 	}
 
-	public List<Usuario> obtenerUsuario(String correo) {
+	public List<Usuario> obtenerUsuario(String correo,String contrasena) {
+		crearToken();
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 		try {
-			ApiFuture<QuerySnapshot> future = db.collection("usuario").whereEqualTo("user_name", correo).get();
-			// future.get() blocks on response
+			ApiFuture<QuerySnapshot> future = db.collection("usuario")
+					.whereEqualTo("correo", correo)
+					.whereEqualTo("contrasena", contrasena).get();
 			List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 			for (QueryDocumentSnapshot document : documents) {
 				listaUsuarios.add(document.toObject(Usuario.class));
-				System.out.println(document.getId() + " => " + document.toObject(Usuario.class));
 			}
 
 		} catch (InterruptedException e) {
@@ -130,7 +136,6 @@ public class FirebaseService {
 				Usuario_Datos d = new Usuario_Datos();
 				d.setId(s.getId());
 				d.setCorreo(separa[5]);
-				;
 				s.setUsuario_datos(d);
 				s.setContrasena(separa[6]);
 				usuario.add(s);
@@ -152,7 +157,6 @@ public class FirebaseService {
 			GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAcount);
 			FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(credentials).build();
 			FirebaseApp.initializeApp(options);
-
 			this.db = FirestoreClient.getFirestore();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -162,5 +166,22 @@ public class FirebaseService {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void crearToken()
+	{
+		String uid = "some-uid";
+
+		try {
+			Map<String, Object> additionalClaims = new HashMap<String, Object>();
+			additionalClaims.put("premiumAccount", true);
+			String customToken = FirebaseAuth.getInstance()
+				    .createCustomToken(uid, additionalClaims);
+			
+			System.out.println(customToken);
+		} catch (FirebaseAuthException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

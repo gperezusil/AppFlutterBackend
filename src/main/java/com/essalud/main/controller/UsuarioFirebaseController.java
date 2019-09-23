@@ -26,10 +26,10 @@ public class UsuarioFirebaseController {
 		return data;
 	}
 	
-	@GetMapping("/obtener/{correo}")
-	public List<Usuario> obtenerUsuario(@PathVariable String correo) {
+	@GetMapping("/obtener/{correo}/{contra}")
+	public List<Usuario> obtenerUsuario(@PathVariable String correo,@PathVariable String contra) {
 		List<Usuario> usu = new ArrayList<Usuario>();
-		for (Usuario u : firebaseService.obtenerUsuario(correo)) {
+		for (Usuario u : firebaseService.obtenerUsuario(correo,contra)) {
 			usu.add(u);
 		}
 
